@@ -1,4 +1,5 @@
 import csv
+import re
 
 def translate_percentage():
     with open('./data/pizza_sales.csv', newline='') as csvfile:
@@ -82,42 +83,51 @@ def translate_pizza_name_per_mounth():
     with open('./data/pizza_sales.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         nbre_pizza = 0
-        pizza_count = {}
+        pizza_count = {1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}, 11:{}, 12:{}}
+        month = 1
 
         for row in reader:
             pizza_name = row['pizza_name_id']
             pizza_name_parts = pizza_name.split('_')  
-            name = name = "_".join(pizza_name_parts[:-1])
+            name = "_".join(pizza_name_parts[:-1])
             
-            if name in pizza_count:
-                pizza_count[name] += float(row['quantity'])
+            month = re.split(r'[-/]', row['order_date'])
+            month = int(month[1])
+
+            if name in pizza_count[month]:
+                pizza_count[month][name] += float(row['quantity'])
             else:
-                pizza_count[name] = float(row['quantity'])
+                pizza_count[month][name] = float(row['quantity'])
 
             nbre_pizza += float(row['quantity'])
 
+    for month in pizza_count:
+        sorted_pizzas = dict(sorted(pizza_count[month].items()))
+        pizza_count[month] = sorted_pizzas
 
-    percentages = []
-    mounth_increment = 1
-    for key, value in pizza_count.items():
-        group = {"Mois": mounth_increment}
-        percentages.append({"Mois": mounth_increment, "Pourcentage": round((value / nbre_pizza) * 100, 2)})
-        mounth_increment += 1
-    
-    # Écriture des pourcentages dans un nouveau fichier CSV
+    lines = []
+    for month, pizzas in pizza_count.items():
+        group = {"Mois": month}
+        for name, number in pizza_count[month].items():
+            group[name] = number
+        lines.append(group)
+
     with open('./data/pizza_name_per_mounth_percentage.csv', mode='w', newline='') as csvfile:
-        fieldnames = ["Type", "Pourcentage"]
+        fieldnames = ["Mois"]
+        for name, number in pizza_count[1].items():
+            fieldnames.append(name)
+
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         # Écrire les en-têtes
         writer.writeheader()
         
         # Écrire les données
-        for row in percentages:
+        for row in lines:
             writer.writerow(row)
 
 
 if __name__ == '__main__':
     # translate_percentage()
     # translate_pizza_type()
-    # translate_pizza_name_per_mounth()
+    translate_pizza_name_per_mounth()
