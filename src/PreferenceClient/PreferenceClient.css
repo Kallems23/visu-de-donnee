@@ -1,0 +1,15 @@
+/* styles/VentesMensuelles.css */
+.line {
+    fill: none;
+    stroke-width: 2;
+  }
+  
+  .line-label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .axis-label {
+    font-size: 14px;
+    font-weight: 500;
+  }

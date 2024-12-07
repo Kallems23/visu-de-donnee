@@ -2,6 +2,7 @@
 import React from "react";
 import HomePage from "./HomePage/HomePage";
 import VenteparMois from "./VenteParMois/VenteparMois";
+import PreferenceClient from "./PreferenceClient/PreferenceClient";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
@@ -20,6 +21,9 @@ function App() {
             <Button color="inherit" component={Link} to="/vente-par-mois">
               Vente par Mois
             </Button>
+            <Button color="inherit" component={Link} to="/preferences-client">
+              Préférences client
+            </Button>
             <Button color="inherit">Analytics</Button>
             <Button color="inherit">À propos</Button>
           </Toolbar>
@@ -28,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/vente-par-mois" element={<VenteparMois />} />
+          <Route path="/preferences-client" element={<PreferenceClient />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
