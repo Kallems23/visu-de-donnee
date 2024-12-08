@@ -12,6 +12,7 @@ import {
 import * as d3 from 'd3';
 
 import CamembertSize from './CamembertSize';
+import CamembertType from './CamembertType';
 
 const PreferenceClient = () => {
   const [selectedPizzas, setSelectedPizzas] = useState({});
@@ -90,12 +91,66 @@ const PreferenceClient = () => {
 
   return (
     <Container maxWidth="lg">
+      {/* Taille des pizzas */}
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Pourcentage de pizzas vendues selon leur taille
+          Pourcentage de tailles des pizzas vendues
         </Typography>
         
-        <CamembertSize/>
+        <CamembertSize />
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
+            <Paper elevation={2} sx={{ p: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Types de Pizza
+              </Typography>
+              <FormGroup>
+                {pizzaTypes.map((type) => (
+                  <FormControlLabel
+                    key={type}
+                    control={
+                      <Checkbox
+                        checked={selectedPizzas[type] || false}
+                        onChange={() => handlePizzaToggle(type)}
+                      />
+                    }
+                    label={type}
+                  />
+                ))}
+              </FormGroup>
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={9}>
+            <Paper elevation={2} sx={{ p: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Analyse des Tendances
+              </Typography>
+              <Typography paragraph>
+                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées 
+                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent 
+                une hausse significative pendant les mois d'été, tandis que les pizzas plus 
+                garnies sont privilégiées en hiver.
+              </Typography>
+              <Typography paragraph>
+                On observe également que certains types de pizzas maintiennent une popularité 
+                constante tout au long de l'année, notamment les classiques comme la Margherita 
+                et la Regina, qui représentent une base stable de nos ventes.
+              </Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+
+
+      {/* Type des pizzas */}
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          Ventes Mensuelles par Type de Pizza
+        </Typography>
+        
+        <CamembertType />
 
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
