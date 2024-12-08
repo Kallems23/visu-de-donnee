@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import * as d3 from 'd3';
 
+import PizzaSales from './PizzaSales';
+
 const VenteParMois = () => {
   const [selectedPizzas, setSelectedPizzas] = useState({});
   const [data, setData] = useState([]);
@@ -93,9 +95,7 @@ const VenteParMois = () => {
           Ventes Mensuelles par Type de Pizza
         </Typography>
         
-        <Paper elevation={3} sx={{ p: 2, mb: 3 }}>
-          <div id="chart" style={{ width: '100%', height: '500px' }} />
-        </Paper>
+        <PizzaSales/>
 
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
