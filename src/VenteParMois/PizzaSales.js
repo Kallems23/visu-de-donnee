@@ -5,108 +5,108 @@ function PizzaSales() {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    const data = [
-      {
-        name: "USA",
-        values: [
-          { date: "2000", price: "100", price2: "50" },
-          { date: "2001", price: "110", price2: "70" },
-          { date: "2002", price: "145", price2: "45" },
-          { date: "2003", price: "241", price2: "86" },
-          { date: "2004", price: "101", price2: "21" },
-          { date: "2005", price: "90", price2: "25" },
-          { date: "2006", price: "10", price2: "34" },
-          { date: "2007", price: "35", price2: "52" },
-          { date: "2008", price: "21", price2: "45" },
-          { date: "2009", price: "201", price2: "54" },
-        ],
-      },
-    ];
+    // Charger le fichier CSV depuis l'URL locale
+    d3.csv('http://localhost:8000/data/pizza_name_per_hour_per_type.csv').then((data) => {
+      // Transformer les données pour adapter les formats
+      data.forEach((d) => {
+        // Conversion de l'intervalle horaire (par exemple "9:00-9:30") en une heure unique pour l'axe X
+        const [start, end] = d.Intervalle.split('-');
+        const startTime = d3.timeParse('%H:%M')(start); // Parser l'heure de début
+        d.time = startTime; // On utilise le début de l'intervalle pour la position sur l'axe X
 
-    const parseDate = d3.timeParse("%Y");
-    data.forEach((d) => d.values.forEach((v) => (v.date = parseDate(v.date))));
+        // Vérification et conversion des valeurs en nombre
+        d.bbq_ckn = +d.bbq_ckn || 0; // Valeur par défaut 0 si conversion échoue
+        d.big_meat = +d.big_meat || 0;
+        d.brie_carre = +d.brie_carre || 0;
+      });
 
-    const width = 500;
-    const height = 300;
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+      const width = 500;
+      const height = 300;
+      const margin = { top: 20, right: 20, bottom: 30, left: 50 };
 
-    const svg = d3
-      .select(chartRef.current)
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      const svg = d3
+        .select(chartRef.current)
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const x = d3
-      .scaleTime()
-      .domain(d3.extent(data[0].values, (d) => d.date))
-      .range([0, width]);
+      // Définir les échelles pour les axes X et Y
+      const x = d3.scaleTime()
+        .domain(d3.extent(data, (d) => d.time))  // Utiliser l'heure pour l'axe X
+        .range([0, width]);
 
-    const y = d3
-      .scaleLinear()
-      .domain([0, d3.max(data[0].values, (d) => Math.max(d.price, d.price2))])
-      .range([height, 0]);
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(data, (d) => Math.max(d.bbq_ckn, d.big_meat, d.brie_carre))]) // Prendre la valeur maximale parmi les 3 types de pizza
+        .range([height, 0]);
 
-    const line1 = d3
-      .line()
-      .x((d) => x(d.date))
-      .y((d) => y(d.price));
+      // Générateur de ligne pour chaque type de pizza
+      const line1 = d3.line()
+        .x((d) => x(d.time))
+        .y((d) => y(d.bbq_ckn));
 
-    const line2 = d3
-      .line()
-      .x((d) => x(d.date))
-      .y((d) => y(d.price2));
+      const line2 = d3.line()
+        .x((d) => x(d.time))
+        .y((d) => y(d.big_meat));
 
-    // Add tooltip
-    const tooltip = d3
-      .select(chartRef.current)
-      .append("div")
-      .style("position", "absolute")
-      .style("background", "#fff")
-      .style("border", "1px solid #ccc")
-      .style("padding", "5px")
-      .style("border-radius", "5px")
-      .style("visibility", "hidden");
+      const line3 = d3.line()
+        .x((d) => x(d.time))
+        .y((d) => y(d.brie_carre));
 
-    // Draw lines
-    const drawLineWithTooltip = (lineData, lineGenerator, color, label) => {
-      svg
-        .append("path")
-        .datum(lineData)
-        .attr("fill", "none")
-        .attr("stroke", color)
-        .attr("stroke-width", 2)
-        .attr("d", lineGenerator)
-        .on("mouseover", () => {
-          tooltip.style("visibility", "visible");
-        })
-        .on("mousemove", (event) => {
-          const [xPos] = d3.pointer(event);
-          const date = x.invert(xPos);
-          const closestData = lineData.reduce((prev, curr) =>
-            Math.abs(curr.date - date) < Math.abs(prev.date - date) ? curr : prev
-          );
-          tooltip
-            .html(`${label}: ${closestData[label]}<br>Date: ${d3.timeFormat("%Y")(closestData.date)}`)
-            .style("top", `${event.pageY - 10}px`)
-            .style("left", `${event.pageX + 10}px`);
-        })
-        .on("mouseout", () => {
-          tooltip.style("visibility", "hidden");
-        });
-    };
+      // Ajouter le tooltip
+      const tooltip = d3
+        .select(chartRef.current)
+        .append('div')
+        .style('position', 'absolute')
+        .style('background', '#fff')
+        .style('border', '1px solid #ccc')
+        .style('padding', '5px')
+        .style('border-radius', '5px')
+        .style('visibility', 'hidden');
 
-    drawLineWithTooltip(data[0].values, line1, "steelblue", "price");
-    drawLineWithTooltip(data[0].values, line2, "orange", "price2");
+      // Fonction de dessin des lignes avec tooltips
+      const drawLineWithTooltip = (lineData, lineGenerator, color, label) => {
+        svg
+          .append('path')
+          .datum(lineData)
+          .attr('fill', 'none')
+          .attr('stroke', color)
+          .attr('stroke-width', 2)
+          .attr('d', lineGenerator)
+          .on('mouseover', () => {
+            tooltip.style('visibility', 'visible');
+          })
+          .on('mousemove', (event) => {
+            const [xPos] = d3.pointer(event);
+            const time = x.invert(xPos);
+            const closestData = lineData.reduce((prev, curr) =>
+              Math.abs(curr.time - time) < Math.abs(prev.time - time) ? curr : prev
+            );
+            tooltip
+              .html(`${label}: ${closestData[label]}<br>Time: ${d3.timeFormat('%H:%M')(closestData.time)}`)
+              .style('top', `${event.pageY - 10}px`)
+              .style('left', `${event.pageX + 10}px`);
+          })
+          .on('mouseout', () => {
+            tooltip.style('visibility', 'hidden');
+          });
+      };
 
-    // Add axes
-    svg.append("g").attr("transform", `translate(0,${height})`).call(d3.axisBottom(x));
-    svg.append("g").call(d3.axisLeft(y));
+      // Dessiner les courbes
+      drawLineWithTooltip(data, line1, 'steelblue', 'bbq_ckn');
+      drawLineWithTooltip(data, line2, 'orange', 'big_meat');
+      drawLineWithTooltip(data, line3, 'green', 'brie_carre');
 
-    return () => {
-      d3.select(chartRef.current).selectAll("*").remove();
-    };
+      // Ajouter les axes
+      svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x));  // Axe X (temps)
+      svg.append('g').call(d3.axisLeft(y));  // Axe Y (quantité)
+
+      return () => {
+        d3.select(chartRef.current).selectAll('*').remove();
+      };
+    });
+
   }, []);
 
   return <div ref={chartRef} />;
