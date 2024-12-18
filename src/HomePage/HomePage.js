@@ -13,6 +13,9 @@ import {
   TrendingUp as TrendingUpIcon,
   People as PeopleIcon 
 } from '@mui/icons-material';
+import { Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import VenteparAn from '../VenteParAn/VenteparAn';
 
 function HomePage() {
   const theme = useTheme();
@@ -57,7 +60,9 @@ function HomePage() {
               },
             }}
           >
-            Voir les statistiques
+            <Link to="/vente-par-an" style={{ textDecoration: 'none', color: 'inherit' }}>
+              Voir les statistiques
+            </Link>
           </Button>
         </Container>
       </Box>
@@ -137,6 +142,10 @@ function HomePage() {
             </Card>
           </Grid>
         </Grid>
+
+        <Routes>
+          <Route path="/vente-par-an" element={<VenteparAn />} />
+        </Routes>
       </Container>
     </Box>
   );

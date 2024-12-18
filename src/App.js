@@ -4,10 +4,10 @@ import HomePage from "./HomePage/HomePage";
 import VenteparMois from "./VenteParMois/VenteparMois";
 import VenteparAn from "./VenteParAn/VenteparAn";
 import PreferenceClient from "./PreferenceClient/PreferenceClient";
+import About from "./About/About";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
-
 import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 
 function App() {
@@ -16,8 +16,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              🍕 PizzaAnalytics
+          <Typography variant="h6" component="div" sx={{flexGrow: 1, cursor: 'pointer', }}
+            >
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                🍕 PizzaAnalytics
+              </Link>
             </Typography>
             <Button color="inherit" component={Link} to="/vente-par-an">
               Ventes annuelles
@@ -28,8 +31,9 @@ function App() {
             <Button color="inherit" component={Link} to="/preferences-client">
               Préférences client
             </Button>
-            <Button color="inherit">Analytics</Button>
-            <Button color="inherit">À propos</Button>
+            <Button color="inherit" component={Link} to="/about">
+              À propos
+            </Button>
           </Toolbar>
         </AppBar>
 
@@ -38,6 +42,7 @@ function App() {
           <Route path="/vente-par-an" element={<VenteparAn />} />
           <Route path="/vente-par-mois" element={<VenteparMois />} />
           <Route path="/preferences-client" element={<PreferenceClient />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
