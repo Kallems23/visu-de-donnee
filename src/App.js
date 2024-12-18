@@ -1,7 +1,7 @@
 // src/App.js
 import React from "react";
 import HomePage from "./HomePage/HomePage";
-import VenteparMois from "./VenteParMois/VenteparMois";
+import VenteHoraires from "./VenteHoraires/VenteHoraires";
 import VenteparAn from "./VenteParAn/VenteparAn";
 import PreferenceClient from "./PreferenceClient/PreferenceClient";
 import About from "./About/About";
@@ -25,8 +25,8 @@ function App() {
             <Button color="inherit" component={Link} to="/vente-par-an">
               Ventes annuelles
             </Button>
-            <Button color="inherit" component={Link} to="/vente-par-mois">
-              Ventes mensuelles
+            <Button color="inherit" component={Link} to="/vente-horaires">
+              Ventes horaires
             </Button>
             <Button color="inherit" component={Link} to="/preferences-client">
               Préférences client
@@ -40,7 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/vente-par-an" element={<VenteparAn />} />
-          <Route path="/vente-par-mois" element={<VenteparMois />} />
+          <Route path="/vente-horaires" element={<VenteHoraires />} />
           <Route path="/preferences-client" element={<PreferenceClient />} />
           <Route path="/about" element={<About />} />
         </Routes>

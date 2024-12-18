@@ -13,7 +13,7 @@ import * as d3 from 'd3';
 
 import PizzaSales from './PizzaSales';
 
-const VenteParMois = () => {
+const VenteHoraires = () => {
   const [selectedPizzas, setSelectedPizzas] = useState({});
   const [data, setData] = useState([]);
 
@@ -144,4 +144,4 @@ const VenteParMois = () => {
   );
 };
 
-export default VenteParMois;
+export default VenteHoraires;
