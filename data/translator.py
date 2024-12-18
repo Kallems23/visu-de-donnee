@@ -115,7 +115,7 @@ def translate_pizza_name_per_month():
             group[name] = number
         lines.append(group)
 
-    with open('./data/pizza_name_per_mounth_percentage.csv', mode='w', newline='') as csvfile:
+    with open('./data/pizza_name_per_month.csv', mode='w', newline='') as csvfile:
         fieldnames = ["Mois"]
         for name, number in pizza_count[1].items():
             fieldnames.append(name)

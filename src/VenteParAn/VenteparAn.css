@@ -1,0 +1,22 @@
+svg {
+  font-family: Arial, sans-serif;
+}
+
+path {
+  stroke-width: 2;
+  fill: none;
+}
+
+circle {
+  stroke: white;
+  stroke-width: 1;
+}
+
+.axis path,
+.axis line {
+  stroke: black;
+}
+
+.text {
+  font-size: 12px;
+}
