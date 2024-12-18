@@ -5,15 +5,20 @@ function StackedPizzaSalesByMonth() {
     const svgRef = useRef();
     const [data, setData] = useState([]);
 
-    // const seq = d3.scaleSequentialQuantile(d3.interpolateRdYlBu)
-    // .domain(Float32Array.from({ length: 1000 }, d3.randomNormal(0.5, 0.15)));
-    // ramp(seq);
-    // seq.quantiles(34)
-
+    const customColors = [
+      "#366b8f", "#d77e30", "#468e46", "#b84444", "#7e5f92",
+      "#8f5235", "#c2699f", "#5f5f5f", "#9ea42e", "#1b8d9f",
+      "#437996", "#76b47e", "#e6a04f", "#bc3e36", "#6f428b",
+      "#cc9e00", "#bd2b28", "#48934e", "#28669f", "#c66194",
+      "#9d5c40", "#8b5294", "#7c7c7c", "#529c7c", "#dd7f52",
+      "#7693af", "#bb72ae", "#7fb359", "#dcb44a", "#b79176",
+      "#8f8f8f", "#875233"
+  ];
+  
     const monthNames = [
       "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
       "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-  ];  
+    ];  
 
     useEffect(() => {
         // Charger et transformer les données
@@ -62,10 +67,13 @@ function StackedPizzaSalesByMonth() {
             .nice()
             .range([height - marginBottom, marginTop]);
 
-        const color = d3
-            .scaleOrdinal()
+        // const color = d3
+        //     .scaleOrdinal()
+        //     .domain(pizzaTypes)
+        //     .range(d3.schemeCategory10); // Couleurs différentes pour chaque type de pizza
+        const color = d3.scaleOrdinal()
             .domain(pizzaTypes)
-            .range(d3.schemeCategory10); // Couleurs différentes pour chaque type de pizza
+            .range(customColors);
 
         const svg = d3.select(svgRef.current);
         svg.selectAll('*').remove(); // Effacer tout contenu précédent
@@ -110,25 +118,35 @@ function StackedPizzaSalesByMonth() {
                     .text('↑ Total des ventes')
             );
 
-        // Ajouter la légende
-        const legend = svg.append('g')
-            .attr('transform', `translate(${width - marginRight + 50}, ${marginTop})`);
-        pizzaTypes.forEach((type, i) => {
-            const legendRow = legend.append('g')
-                .attr('transform', `translate(0, ${i * 20})`);
-            legendRow.append('rect')
-                .attr('width', 15)
-                .attr('height', 15)
-                .attr('fill', color(type));
-            legendRow.append('text')
-                .attr('x', 20)
-                .attr('y', 12.5)
-                .attr('fill', 'black')
-                .text(type);
-        });
+          // Ajouter la légende avec l'ordre inversé sur 2 colonnes
+          const legend = svg.append('g')
+              .attr('transform', `translate(${width - marginRight + 50}, ${marginTop + 100})`);
+
+          const numColumns = 2; // Nombre de colonnes souhaité
+          const rowHeight = 20; // Hauteur entre chaque ligne
+          const columnWidth = 150; // Largeur entre les colonnes
+
+          pizzaTypes.slice().reverse().forEach((type, i) => { // Inverser l'ordre
+              const column = i % numColumns; // Calculer la colonne (0 ou 1)
+              const row = Math.floor(i / numColumns); // Calculer la ligne
+
+              const legendRow = legend.append('g')
+                  .attr('transform', `translate(${column * columnWidth}, ${row * rowHeight})`);
+
+              legendRow.append('rect')
+                  .attr('width', 15)
+                  .attr('height', 15)
+                  .attr('fill', color(type));
+
+              legendRow.append('text')
+                  .attr('x', 20)
+                  .attr('y', 12.5)
+                  .attr('fill', 'black')
+                  .text(type);
+          });
     }, [data]);
 
-    return <svg ref={svgRef} width={1150} height={500}></svg>;
+    return <svg ref={svgRef} width={1500} height={500}></svg>;
 }
 
 export default StackedPizzaSalesByMonth;
