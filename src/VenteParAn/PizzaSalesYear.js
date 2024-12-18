@@ -5,6 +5,11 @@ function StackedPizzaSalesByMonth() {
     const svgRef = useRef();
     const [data, setData] = useState([]);
 
+    // const seq = d3.scaleSequentialQuantile(d3.interpolateRdYlBu)
+    // .domain(Float32Array.from({ length: 1000 }, d3.randomNormal(0.5, 0.15)));
+    // ramp(seq);
+    // seq.quantiles(34)
+
     const monthNames = [
       "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
       "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
@@ -107,7 +112,7 @@ function StackedPizzaSalesByMonth() {
 
         // Ajouter la légende
         const legend = svg.append('g')
-            .attr('transform', `translate(${width - marginRight - 100}, ${marginTop})`);
+            .attr('transform', `translate(${width - marginRight + 50}, ${marginTop})`);
         pizzaTypes.forEach((type, i) => {
             const legendRow = legend.append('g')
                 .attr('transform', `translate(0, ${i * 20})`);
@@ -123,7 +128,7 @@ function StackedPizzaSalesByMonth() {
         });
     }, [data]);
 
-    return <svg ref={svgRef} width={960} height={500}></svg>;
+    return <svg ref={svgRef} width={1150} height={500}></svg>;
 }
 
 export default StackedPizzaSalesByMonth;
