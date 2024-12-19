@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  FormGroup, 
-  FormControlLabel, 
+import {
+  Box,
+  Container,
+  Typography,
+  FormGroup,
+  FormControlLabel,
   Checkbox,
   Paper,
-  Grid 
+  Grid
 } from '@mui/material';
 import * as d3 from 'd3';
-
 import CamembertSize from './CamembertSize';
 import CamembertType from './CamembertType';
 
@@ -24,14 +23,14 @@ const PreferenceClient = () => {
   const height = 500 - margin.top - margin.bottom;
 
   // Définition des échelles
-  const x = useMemo(() => 
+  const x = useMemo(() =>
     d3.scaleLinear()
       .domain([1, 12])
       .range([0, width]),
     [width]
   );
 
-  const y = useMemo(() => 
+  const y = useMemo(() =>
     d3.scaleLinear()
       .domain([0, d3.max(data, d => d.sales)])
       .range([height, 0]),
@@ -42,11 +41,10 @@ const PreferenceClient = () => {
   const pizzaTypes = [
     'Margherita', 'Regina', 'Quatre Fromages', 'Végétarienne',
     'Pepperoni', 'Hawaienne', 'Calzone', 'Napolitaine'
-    // ... ajoutez les autres types
   ];
 
   // Filtrer les données en fonction des pizzas sélectionnées
-  const filteredData = useMemo(() => 
+  const filteredData = useMemo(() =>
     data.filter(d => selectedPizzas[d.pizzaType]),
     [data, selectedPizzas]
   );
@@ -54,7 +52,6 @@ const PreferenceClient = () => {
   // Configuration du graphique D3
   useEffect(() => {
     if (!data.length) return;
-
     const svg = d3.select("#chart")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -90,52 +87,45 @@ const PreferenceClient = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container sx={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      flexDirection: 'column',
+      width: '100%',
+      maxWidth: '100% !important'
+    }}>
       {/* Taille des pizzas */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" gutterBottom>
+      <Box sx={{ 
+        my: 4, 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center' 
+      }}>
+        <Typography variant="h4" gutterBottom align="center">
           Pourcentage de tailles des pizzas vendues
         </Typography>
         
-        <CamembertSize />
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <CamembertSize />
+        </Box>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Types de Pizza
-              </Typography>
-              <FormGroup>
-                {pizzaTypes.map((type) => (
-                  <FormControlLabel
-                    key={type}
-                    control={
-                      <Checkbox
-                        checked={selectedPizzas[type] || false}
-                        onChange={() => handlePizzaToggle(type)}
-                      />
-                    }
-                    label={type}
-                  />
-                ))}
-              </FormGroup>
-            </Paper>
-          </Grid>
-
+        <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom align="center">
                 Analyse des Tendances
               </Typography>
               <Typography paragraph>
-                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées 
-                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent 
-                une hausse significative pendant les mois d'été, tandis que les pizzas plus 
+                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées
+                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent
+                une hausse significative pendant les mois d'été, tandis que les pizzas plus
                 garnies sont privilégiées en hiver.
               </Typography>
               <Typography paragraph>
-                On observe également que certains types de pizzas maintiennent une popularité 
-                constante tout au long de l'année, notamment les classiques comme la Margherita 
+                On observe également que certains types de pizzas maintiennent une popularité
+                constante tout au long de l'année, notamment les classiques comme la Margherita
                 et la Regina, qui représentent une base stable de nos ventes.
               </Typography>
             </Paper>
@@ -143,52 +133,37 @@ const PreferenceClient = () => {
         </Grid>
       </Box>
 
-
       {/* Type des pizzas */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" gutterBottom>
+      <Box sx={{ 
+        my: 4, 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center' 
+      }}>
+        <Typography variant="h4" gutterBottom align="center">
           Ventes Mensuelles par Type de Pizza
         </Typography>
         
-        <CamembertType />
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <CamembertType />
+        </Box>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Types de Pizza
-              </Typography>
-              <FormGroup>
-                {pizzaTypes.map((type) => (
-                  <FormControlLabel
-                    key={type}
-                    control={
-                      <Checkbox
-                        checked={selectedPizzas[type] || false}
-                        onChange={() => handlePizzaToggle(type)}
-                      />
-                    }
-                    label={type}
-                  />
-                ))}
-              </FormGroup>
-            </Paper>
-          </Grid>
-
+        <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom align="center">
                 Analyse des Tendances
               </Typography>
               <Typography paragraph>
-                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées 
-                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent 
-                une hausse significative pendant les mois d'été, tandis que les pizzas plus 
+                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées
+                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent
+                une hausse significative pendant les mois d'été, tandis que les pizzas plus
                 garnies sont privilégiées en hiver.
               </Typography>
               <Typography paragraph>
-                On observe également que certains types de pizzas maintiennent une popularité 
-                constante tout au long de l'année, notamment les classiques comme la Margherita 
+                On observe également que certains types de pizzas maintiennent une popularité
+                constante tout au long de l'année, notamment les classiques comme la Margherita
                 et la Regina, qui représentent une base stable de nos ventes.
               </Typography>
             </Paper>
