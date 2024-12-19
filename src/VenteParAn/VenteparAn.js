@@ -98,27 +98,6 @@ const VenteParAn = () => {
         <PizzaSalesYear/>
 
         <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Types de Pizza
-              </Typography>
-              <FormGroup>
-                {pizzaTypes.map((type) => (
-                  <FormControlLabel
-                    key={type}
-                    control={
-                      <Checkbox
-                        checked={selectedPizzas[type] || false}
-                        onChange={() => handlePizzaToggle(type)}
-                      />
-                    }
-                    label={type}
-                  />
-                ))}
-              </FormGroup>
-            </Paper>
-          </Grid>
 
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
