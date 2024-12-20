@@ -92,7 +92,7 @@ const VenteParAn = () => {
     <Container maxWidth="lg">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Ventes Mensuelles par Type de Pizza
+          Ventes des pizzas selon le type chaque mois 
         </Typography>
         
         <PizzaSalesYear/>
@@ -101,20 +101,76 @@ const VenteParAn = () => {
 
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Analyse des Tendances
+              <Typography variant="h5" gutterBottom>
+                Analyse du graphique
               </Typography>
-              <Typography paragraph>
-                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées 
-                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent 
-                une hausse significative pendant les mois d'été, tandis que les pizzas plus 
-                garnies sont privilégiées en hiver.
-              </Typography>
-              <Typography paragraph>
-                On observe également que certains types de pizzas maintiennent une popularité 
-                constante tout au long de l'année, notamment les classiques comme la Margherita 
-                et la Regina, qui représentent une base stable de nos ventes.
-              </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Représentation
+                </Typography>
+                  <Typography paragraph>
+                    Le graphique représente le nombre de pizza vendues sur toute l'année 2015 par mois.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Graphique : histogramme empilé
+                </Typography>
+                  <Typography paragraph>
+                    Ce type de graphique permet d'avoir rapidement l'information sur les mois avec le plus de pizzas vendues.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Couleur
+                </Typography>
+                  <Typography paragraph>
+                    Des couleurs assez hétérogènes ont été choisies pour pouvoir avoir plus de précision sur la répartition des types de pizzas vendues.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Échelles de mesure 
+                </Typography>
+                  <Typography paragraph>
+                    Les échelles de mesure choisies sont : nominative, ordinale et intervalle.
+                  </Typography>
+
+                  <Typography variant="h6" gutterBottom>
+                    Variables visuelles
+                  </Typography>
+                  <Box sx={{ pl: 2 }}>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Nominative :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "teinte" nous permet de visualiser les types de pizzas vendues.
+                      </Typography>
+                    </Box>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Ordinale :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "aire" nous permet de visualiser le nombre de pizzas vendues.
+                      </Typography>
+                    </Box>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Intervalle :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "position" nous permet de visualiser chacun des mois (en abscisses).
+                      </Typography>
+                    </Box>
+                  </Box>
+
+
+                <Typography variant="h6" gutterBottom>
+                  Analyse du graphique 
+                </Typography>
+                  <Typography paragraph>
+                    On voit que globalement le nombre de pizzas vendues par mois est constant sur l'année. Bien que l'on remarque que les mois de Janvier, Mars, Mai, Juillet comptent plus de pizzas vendues.<br/>
+                    En faisant quelques recherches, on remarque une corrélation avec les mois où il y a des vacances scolaires en Amérique. Les familles partant en vacances doivent alors sûrement mangé ou commandé dans les restaurants, cette pizzeria pourrait être un exemple d'application.
+                  </Typography>
             </Paper>
           </Grid>
         </Grid>

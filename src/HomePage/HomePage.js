@@ -27,7 +27,7 @@ function HomePage() {
           bgcolor: 'background.paper',
           pt: 8,
           pb: 6,
-          background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/pizza-background.jpg')`,
+          background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/visu-de-donnee/pizza-background.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: 'white',
@@ -85,7 +85,7 @@ function HomePage() {
               <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
                 <TimelineIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
                 <Typography gutterBottom variant="h5" component="h2">
-                  Ventes Mensuelles
+                  Ventes Annuelles
                 </Typography>
                 <Typography>
                   Suivez l'évolution des ventes par type de pizza
