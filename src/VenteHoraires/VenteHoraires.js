@@ -92,10 +92,11 @@ const VenteHoraires = () => {
     <Container maxWidth="lg">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Ventes Mensuelles par Type de Pizza
+          Ventes journalières par demi-heure, cumulées sur l'année
         </Typography>
         
         <PizzaSales/>
+        <p><i>NB : Vous pouvez cliquer sur les checkboxs pour afficher ou cacher la courbe associée au type sélectionné.</i></p>
 
         <Grid container spacing={2}>
 

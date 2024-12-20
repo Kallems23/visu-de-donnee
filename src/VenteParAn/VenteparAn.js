@@ -96,6 +96,7 @@ const VenteParAn = () => {
         </Typography>
         
         <PizzaSalesYear/>
+        <p><i>NB : Vous pouvez cliquer sur le type de pizza dans la légende à droite pour afficher ou cacher la représentation du type cliqué.</i></p>
 
         <Grid container spacing={2}>
 

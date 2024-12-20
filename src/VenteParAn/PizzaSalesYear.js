@@ -131,7 +131,7 @@ function StackedPizzaSalesByMonth() {
             const column = i % numColumns;
             const row = Math.floor(i / numColumns);
             const legendRow = legend.append('g')
-                .attr('transform', `translate(${column * columnWidth}, ${row * rowHeight})`);
+                .attr('transform', `translate(${column * columnWidth}, ${row * rowHeight + 75})`);
 
             legendRow.append('rect')
                 .attr('width', 15)
