@@ -7,7 +7,7 @@ function CamembertSize() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const csvData = await d3.csv("http://localhost:8000/data/size_percentage.csv");
+                const csvData = await d3.csv("./data/size_percentage.csv");
                 // Assurez-vous que les données sont au bon format (nombre pourcentage)
                 const formattedData = csvData.map(d => ({
                     name: d.Taille, // Adaptez selon les colonnes de votre CSV
@@ -76,17 +76,19 @@ function CamembertSize() {
   svg.append("g")
     .attr("text-anchor", "middle")
     .selectAll("text")
-    .attr("font-size", "100000px") 
     .data(arcs)
     .join("text")
+    .filter(d => (d.endAngle - d.startAngle) > 0.3)
     .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
     .call(text => text.append("tspan")
       .attr("y", "-0.4em")
       .attr("font-weight", "bold")
+      .attr("font-size", "30px") 
       .text(d => d.data.name))
     .call(text => text.filter(d => (d.endAngle - d.startAngle) > 0.25).append("tspan")
       .attr("x", 0)
       .attr("y", "0.7em")
+      .attr("font-size", "30px") 
       .attr("fill-opacity", 0.7)
       .text(d => d.data.value.toLocaleString("en-US")));
 

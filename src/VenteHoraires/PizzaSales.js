@@ -25,7 +25,7 @@ class PizzaSales extends React.Component {
   }
 
   loadData() {
-    d3.csv('http://localhost:8000/data/pizza_name_per_hour_per_type.csv')
+    d3.csv('./data/pizza_name_per_hour_per_type.csv')
       .then((data) => {
         const pizzaTypes = Object.keys(data[0]).filter(key => 
           key !== 'Intervalle' && key !== 'time'
