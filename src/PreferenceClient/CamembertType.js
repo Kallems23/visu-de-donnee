@@ -7,7 +7,7 @@ function CamembertType() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const csvData = await d3.csv("http://localhost:8000/data/type_percentage.csv");
+                const csvData = await d3.csv("https://kallems23.github.io/visu-de-donnee/data/type_percentage.csv");
                 // Assurez-vous que les données sont au bon format (nombre pourcentage)
                 const formattedData = csvData.map(d => ({
                     name: d.Type, // Adaptez selon les colonnes de votre CSV

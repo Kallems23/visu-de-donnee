@@ -7,7 +7,7 @@ function CamembertSize() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const csvData = await d3.csv("http://localhost:8000/data/size_percentage.csv");
+                const csvData = await d3.csv("./data/size_percentage.csv");
                 // Assurez-vous que les données sont au bon format (nombre pourcentage)
                 const formattedData = csvData.map(d => ({
                     name: d.Taille, // Adaptez selon les colonnes de votre CSV

@@ -23,7 +23,7 @@ function StackedPizzaSalesByMonth() {
     ];
 
     useEffect(() => {
-        d3.csv("http://localhost:8000/data/pizza_name_per_month.csv").then((loadedData) => {
+        d3.csv("https://kallems23.github.io/visu-de-donnee/data/pizza_name_per_month.csv").then((loadedData) => {
             const formattedData = loadedData.map(row => {
                 const month = +row.Mois;
                 const pizzas = Object.keys(row)
