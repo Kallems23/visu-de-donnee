@@ -9,8 +9,8 @@ class PizzaSales extends React.Component {
       visibleLines: {}
     };
     this.config = {
-      width: 500,
-      height: 300,
+      width: 1000,
+      height: 500,
       margin: { top: 20, right: 20, bottom: 30, left: 50 }
     };
   }
@@ -140,6 +140,16 @@ class PizzaSales extends React.Component {
   }
 
   render() {
+    const customColors = [
+      "#366b8f", "#d77e30", "#468e46", "#b84444", "#7e5f92",
+      "#8f5235", "#c2699f", "#5f5f5f", "#9ea42e", "#1b8d9f",
+      "#437996", "#76b47e", "#e6a04f", "#bc3e36", "#6f428b",
+      "#cc9e00", "#bd2b28", "#48934e", "#28669f", "#c66194",
+      "#9d5c40", "#8b5294", "#7c7c7c", "#529c7c", "#dd7f52",
+      "#7693af", "#bb72ae", "#7fb359", "#dcb44a", "#b79176",
+      "#8f8f8f", "#875233"
+    ];
+
     return (
       <div>
         <div style={{ marginBottom: '20px' }}>
@@ -150,7 +160,7 @@ class PizzaSales extends React.Component {
                 checked={this.state.visibleLines[type]}
                 onChange={() => this.handleCheckboxChange(type)}
               />
-              <span style={{ color: d3.schemeCategory10[index % 10] }}>{type}</span>
+              <span style={{ color: customColors[index] }}>{type}</span>
             </label>
           ))}
         </div>

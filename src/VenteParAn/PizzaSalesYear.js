@@ -127,7 +127,7 @@ function StackedPizzaSalesByMonth() {
         const rowHeight = 20;
         const columnWidth = 150;
 
-        allPizzaTypes.forEach((type, i) => {
+        allPizzaTypes.reverse().forEach((type, i) => {
             const column = i % numColumns;
             const row = Math.floor(i / numColumns);
             const legendRow = legend.append('g')

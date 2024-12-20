@@ -163,7 +163,6 @@ const VenteParAn = () => {
                     </Box>
                   </Box>
 
-
                 <Typography variant="h6" gutterBottom>
                   Analyse du graphique 
                 </Typography>
