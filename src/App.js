@@ -19,7 +19,7 @@ function App() {
           <Typography variant="h6" component="div" sx={{flexGrow: 1, cursor: 'pointer', }}
             >
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                🍕 PizzaAnalytics
+                🍕 PizzAnalytics
               </Link>
             </Typography>
             <Button color="inherit" component={Link} to="/vente-par-an">

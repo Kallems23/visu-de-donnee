@@ -6,9 +6,10 @@
 
 ### Lancement local
 
-> Pour les commandes ci-dessous, on suppose que l'exéction se fait depuis le dossier **visu-de-donnee/**.
+> Pour les commandes ci-dessous, on suppose que l'exécution se fait depuis le dossier **visu-de-donnee/**.
 
 Pour lancer le projet en local, il faut :
+- Cloner ou télécharger le [projet](https://github.com/Kallems23/visu-de-donnee) (https://github.com/Kallems23/visu-de-donnee) depuis Github.
 - Entrer dans un terminal et exécuter la commande (lancement des outils de React) : `npm start`.
     > Par défaut, le projet se lancera sur : http://localhost:3000
 - Dans un second terminal, exécuter la commande (lancement d'un serveur local en Python pour accéder aux fichiers (sinon, bug du fetch)) : `python3 .\src\PreferenceClient\begin_local_serv.py`
@@ -32,4 +33,4 @@ Les données nécessaires à la visualisation ont été extraites de ce dataset 
 
 ### Visualisations
 
-Nous avons réalisé plusieurs visualisations qui sont visibles directement depuis le [site](https://kallems23.github.io/visu_de_donnee/) cité plus haut. Ces visualisations sont accessibles depuis le menu de navigation en haut à droite de la page.
+Nous avons réalisé plusieurs visualisations qui sont visibles directement depuis le [site](https://kallems23.github.io/visu-de-donnee/) cité plus haut. Ces visualisations sont accessibles depuis le menu de navigation en haut à droite de la page.
