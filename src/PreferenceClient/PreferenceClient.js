@@ -104,7 +104,7 @@ const PreferenceClient = () => {
         alignItems: 'center' 
       }}>
         <Typography variant="h4" gutterBottom align="center">
-          Pourcentage de tailles des pizzas vendues
+          Pourcentage des tailles des pizzas vendues
         </Typography>
         
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
@@ -114,20 +114,67 @@ const PreferenceClient = () => {
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom align="center">
-                Analyse des Tendances
+              <Typography variant="h5" gutterBottom>
+                Analyse du graphique
               </Typography>
-              <Typography paragraph>
-                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées
-                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent
-                une hausse significative pendant les mois d'été, tandis que les pizzas plus
-                garnies sont privilégiées en hiver.
-              </Typography>
-              <Typography paragraph>
-                On observe également que certains types de pizzas maintiennent une popularité
-                constante tout au long de l'année, notamment les classiques comme la Margherita
-                et la Regina, qui représentent une base stable de nos ventes.
-              </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Représentation
+                </Typography>
+                  <Typography paragraph>
+                    Le graphique représente le pourcentage des tailles de pizzas vendues à l'année.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Camembert  
+                </Typography>
+                  <Typography paragraph>
+                    Ce type de graphique permet d'avoir rapidement l'information sur les principaux clusters.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Couleur
+                </Typography>
+                  <Typography paragraph>
+                    Des couleurs assez hétérogène ont été choisies pour pouvoir avoir plus de précision sur la répartition des types de pizzas vendues.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Échelles de mesure 
+                </Typography>
+                  <Typography paragraph>
+                    Les échelles de mesure choisies sont : nominative et ordinale.
+                  </Typography>
+
+                  <Typography variant="h6" gutterBottom>
+                    Variables visuelles
+                  </Typography>
+                  <Box sx={{ pl: 2 }}>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Nominative :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "teinte" nous permet de visualiser les tailles de pizzas vendues (le survol des sections affichent le nom de la taille).
+                      </Typography>
+                    </Box>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Ordinale :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "position" nous permet de visualiser le pourcentage de tailles vendues pour chaque catégorie (entre : S, M, L, XL et XXL).
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                <Typography variant="h6" gutterBottom>
+                  Analyse du graphique 
+                </Typography>
+                  <Typography paragraph>
+                    On voit que les ventes sur les types S, M et L sont bien réparties et représentent environ 1 tier chacune. Les tailles XL et XXL sont très peu représentées.<br/>
+                    Ce graphique est très intéressant dans le sens où l'on dit souvent que les entreprises ont tendance à mettre un prix très élevé pour la taille S (par exemple 10€) mais moins important pour le M (par exemple 12€) et un prix assez proche du M pour le L pour influencer le client à prendre la taille la plus grande (par exemple 13€). Ici, cela semble être le cas, la taille L est la plus élevée, bien qu'il y ait presque autant de S que de M semblent vendues. Les tailles XL et XXL ne doivent probablement pas être aussi avantageuses.
+                  </Typography>
             </Paper>
           </Grid>
         </Grid>
@@ -142,7 +189,7 @@ const PreferenceClient = () => {
         alignItems: 'center' 
       }}>
         <Typography variant="h4" gutterBottom align="center">
-          Ventes Mensuelles par Type de Pizza
+          Pourcentage de répartition des types de pizzas vendues
         </Typography>
         
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
@@ -152,20 +199,66 @@ const PreferenceClient = () => {
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} md={9}>
             <Paper elevation={2} sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom align="center">
-                Analyse des Tendances
+              <Typography variant="h5" gutterBottom>
+                Analyse du graphique
               </Typography>
-              <Typography paragraph>
-                L'analyse des ventes mensuelles révèle des tendances saisonnières marquées
-                dans la consommation de pizzas. Les pizzas légères et végétariennes connaissent
-                une hausse significative pendant les mois d'été, tandis que les pizzas plus
-                garnies sont privilégiées en hiver.
-              </Typography>
-              <Typography paragraph>
-                On observe également que certains types de pizzas maintiennent une popularité
-                constante tout au long de l'année, notamment les classiques comme la Margherita
-                et la Regina, qui représentent une base stable de nos ventes.
-              </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Représentation
+                </Typography>
+                  <Typography paragraph>
+                    Le graphique représente le pourcentage des types pizzas vendues à l'année.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Camembert  
+                </Typography>
+                  <Typography paragraph>
+                    Ce type de graphique permet d'avoir rapidement l'information sur les principaux clusters de types de pizzas.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Couleur
+                </Typography>
+                  <Typography paragraph>
+                    Des couleurs assez hétérogène ont été choisies pour pouvoir avoir plus de précision sur la répartition des types de pizzas vendues.
+                  </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Échelles de mesure 
+                </Typography>
+                  <Typography paragraph>
+                    Les échelles de mesure choisies sont : nominative et ordinale.
+                  </Typography>
+
+                  <Typography variant="h6" gutterBottom>
+                    Variables visuelles
+                  </Typography>
+                  <Box sx={{ pl: 2 }}>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Nominative :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "teinte" nous permet de visualiser les types de pizzas vendues (le survol des sections affichent le nom du type).
+                      </Typography>
+                    </Box>
+                    <Typography variant="h7" gutterBottom>
+                      <b>• Ordinale :</b>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                      <Typography gutterBottom>
+                        La variable visuelle "position" nous permet de visualiser le pourcentage de types de pizzas vendues pour chaque catégorie (au survol souris si besoin).
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                <Typography variant="h6" gutterBottom>
+                  Analyse du graphique 
+                </Typography>
+                  <Typography paragraph>
+                    On voit que chaque type de pizza semble aussi bien vendu que les autres. Cela peut indiquer que le restaurateur a compris les principales demandes de ces consommateurs.
+                  </Typography>
             </Paper>
           </Grid>
         </Grid>
