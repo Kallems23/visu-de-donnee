@@ -27,7 +27,7 @@ function HomePage() {
           bgcolor: 'background.paper',
           pt: 8,
           pb: 6,
-          background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/pizza-background.jpg')`,
+          background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/visu-de-donnee/pizza-background.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: 'white',
