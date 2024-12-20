@@ -12,7 +12,7 @@ import { AppBar, Button, Toolbar, Typography } from "@mui/material";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/visu-de-donnee">
       <ThemeProvider theme={theme}>
         <AppBar position="static">
           <Toolbar>

@@ -76,6 +76,7 @@ function CamembertSize() {
   svg.append("g")
     .attr("text-anchor", "middle")
     .selectAll("text")
+    .attr("font-size", "100000px") 
     .data(arcs)
     .join("text")
     .attr("transform", d => `translate(${arcLabel.centroid(d)})`)

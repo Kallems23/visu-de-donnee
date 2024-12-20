@@ -17,7 +17,7 @@ Le site est alors accessible.
 
 ### Lancement depuis Internet
 
-Il suffit de se rendre sur [ce site](https://kallems23.github.io/visu_de_donnee/) (https://kallems23.github.io/visu_de_donnee/).
+Il suffit de se rendre sur [ce site](https://kallems23.github.io/visu-de-donnee/) (https://kallems23.github.io/visu-de-donnee/).
 
 ## Description du projet
 
